@@ -2,22 +2,14 @@ package cool.proto.retry;
 
 /**
  * Runner for synchronous and asynchronous tasks.
+ *
+ * @implNote Whether the task is of the form synchronous
+ * or asynchronous they will be executed in background.
  */
 public class RetryTaskRunner implements Runnable {
 
-    /**
-     * Listener for when retry tasks have finished.
-     */
-    interface TaskCompleteCallback {
-
-        /**
-         * Will be automatically executed after {@link RetrySyncTaskCallback#retryTask()}
-         */
-        void taskCompleted();
-    }
-
     private RetryTaskCallback retryTaskCallback;
-    private TaskCompleteCallback taskCompleteCallback;
+    private RetryTaskCompleteCallback taskCompleteCallback;
 
     /**
      * @param retryTaskCallback retry task interface instance
@@ -27,11 +19,11 @@ public class RetryTaskRunner implements Runnable {
     }
 
     /**
-     * Set instance of {@link TaskCompleteCallback}
+     * Set instance of {@link RetryTaskCompleteCallback}
      *
      * @param taskCompleteCallback listener for task completion.
      */
-    public void registerTaskCompleteCallback(TaskCompleteCallback taskCompleteCallback) {
+    public void registerTaskCompleteCallback(RetryTaskCompleteCallback taskCompleteCallback) {
         this.taskCompleteCallback = taskCompleteCallback;
     }
 

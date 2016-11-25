@@ -9,10 +9,10 @@ public interface RetryAsyncTaskCallback extends RetryTaskCallback  {
 
     /**
      * The same as {@link RetrySyncTaskCallback#retryTask()} but with the difference
-     * that we pass an instance of {@link RetryTaskRunner.TaskCompleteCallback}.
+     * that we pass an instance of {@link RetryTaskCompleteCallback}.
      *
      * @param taskCompleteCallback needs to be executed when done with this task
      *                             to continue with the process.
      */
-    void retryTask(RetryTaskRunner.TaskCompleteCallback taskCompleteCallback);
+    void retryTask(RetryTaskCompleteCallback taskCompleteCallback);
 }

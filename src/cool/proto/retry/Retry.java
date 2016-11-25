@@ -3,7 +3,7 @@ package cool.proto.retry;
 /**
  * Integration of callbacks to handle flow of `Retry` pattern.
  */
-public class Retry implements RetryTaskRunner.TaskCompleteCallback {
+public class Retry implements RetryTaskCompleteCallback {
 
     private RetryEventListener retryEventListener;
     private RetryCriteriaCallback retryCriteriaCallback;
