@@ -3,7 +3,7 @@ Collection of interfaces to build the Retry Pattern.
 
 ## How to implement it?
  
- You can find a example at `cool.proto.retry.example` package.
+ You can find an example for `async` and `sync` tasks inside [`cool.proto.retry.example`](src/cool/proto/retry/example) package.
  
 ## Licence
  
