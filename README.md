@@ -5,6 +5,6 @@ Collection of interfaces to build the Retry Pattern.
  
  You can find a example at `cool.proto.retry.example` package.
  
- ### Licence
+### Licence
  
  [MIT](LICENSE)
