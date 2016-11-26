@@ -12,6 +12,16 @@ public class Retry implements RetryTaskCompleteCallback {
     public Retry() {}
 
     /**
+     * Create a Retry instance with callbacks registered.
+     *
+     * @param retryBuilder retry builder to build.
+     * @return instance create.
+     */
+    public static Retry create(RetryBuilder retryBuilder) {
+        return retryBuilder.build();
+    }
+
+    /**
      * Starts retry flow and executes retry task in background.
      */
     public void exec() {
