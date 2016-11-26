@@ -5,9 +5,9 @@ Collection of interfaces to build the Retry Pattern.
  
  You can find an example for `async` and `sync` tasks inside [`cool.proto.retry.example`](src/cool/proto/retry/example) package.
  
-## Usage
+## Implementation
 
-### Implement RetryTaskSyncCallback || RetryTaskAsyncCallback
+### RetryTaskSyncCallback || RetryTaskAsyncCallback
 
 #### `#retryTask()`
 
@@ -44,7 +44,7 @@ public class SomeClass implements RetryAsyncTaskCallback {
     
 ```
 
-### Implement RetryCriteriaCallback
+### RetryCriteriaCallback
 
 #### `#retryCriteria()`
 
@@ -62,7 +62,7 @@ public class SomeClass implements RetryCriteriaCallback {
     
 ```
 
-### Implement RetryEventListener
+### RetryEventListener
 
 Listen for `onRetryFailed` and `onRetrySucceed` events, one of this two methods will get triggered once the `retryTask()` method execution has finished or after `RetryTaskCompleteCallback#retryTask(RetryTaskCompleteCallback)` called in case of implementing `RetryTaskAsyncCallback` instead.
 
@@ -81,7 +81,7 @@ public class SomeClass implements RetryEventListener {
     
 ```
 
-### Running
+## Running
 
 With the three interfaces implemented it's time to test our Retry implementation.
 
