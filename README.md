@@ -20,7 +20,9 @@ public class SomeClass implements RetrySyncTaskCallback {
     public void retryTask() {
       // do something in background here!
     }
-}
+    
+    ...
+
 ```
 
 #### `#retryTask(RetryTaskCompleteCallback)`
@@ -37,7 +39,9 @@ public class SomeClass implements RetryAsyncTaskCallback {
       // Call `taskCompleteCallback.taskCompleted()` when you are done!
       taskCompleteCallback.taskCompleted();
     }
-}
+    
+    ...
+    
 ```
 
 ### Implement RetryCriteriaCallback
@@ -53,12 +57,14 @@ public class SomeClass implements RetryCriteriaCallback {
     public boolean retryCriteria() {
       // put your retry decision logic here!
     }
-}
+    
+    ...
+    
 ```
 
 ### Implement RetryEventListener
 
-Listen for `onRetryFailed` and `onRetrySucceed` events, one of this two methods will get triggered once the `retryTask()` method execution has finished.
+Listen for `onRetryFailed` and `onRetrySucceed` events, one of this two methods will get triggered once the `retryTask()` method execution has finished or after `RetryTaskCompleteCallback#retryTask(RetryTaskCompleteCallback)` called in case of implementing `RetryTaskAsyncCallback` instead.
 
 If `#retryCriteria()`returns `false` `#onRetryFailed()` will be execute, otherwise `#onRetrySucceed()`.
 
@@ -70,7 +76,33 @@ public class SomeClass implements RetryEventListener {
 
     @Override
     public void onRetrySucceed() {}
-}
+    
+    ...
+    
+```
+
+### Running
+
+With the three interfaces implemented it's time to test our Retry implementation.
+
+```java
+public class SomeClass implements RetryAsyncTaskCallback, RetryCriteriaCallback, RetryEventListener {
+
+    public SomeClass() {
+
+        // Prepare callbacks with the `RetryBuiler`.
+        RetryBuilder builder = new RetryBuilder()
+           .task(this)
+           .criteria(this)
+           .events(this);
+
+        // Pass `builder` to static method `create` and 
+        // execute the Retry process in one single line.
+        Retry.create(builder).exec();
+     }
+     
+     ...
+
 ```
 
  
