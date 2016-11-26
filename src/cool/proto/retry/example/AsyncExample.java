@@ -13,10 +13,11 @@ public class AsyncExample implements RetryAsyncTaskCallback, RetryCriteriaCallba
     private static final Logger LOGGER = Logger.getLogger(TAG);
 
     public AsyncExample() {
-        retry = new Retry();
-        retry.registerRetryTask(this);
-        retry.registerRetryCriteriaCallback(this);
-        retry.registerRetryEventListener(this);
+
+        retry = Retry.create(new RetryBuilder()
+                .task(this)
+                .criteria(this)
+                .events(this));
 
         retry.exec();
     }
